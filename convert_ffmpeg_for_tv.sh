@@ -6,7 +6,8 @@
 # @created     : Friday Mar 01, 2019 16:07:53 CET
 # @license     : GPL-3.0
 #
-# @description : Run two pass conversion to convert file to tv
+# @description : Run two pass conversion to convert files to format 
+#		 more suitable for old TV sets.
 ######################################################################
 
 
