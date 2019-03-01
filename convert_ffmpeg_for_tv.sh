@@ -36,21 +36,38 @@ do
 		# First pass
 		ffmpeg 	-y 			\
 			-i "${input_file}" 	\
-			-c:v mpeg4 		\
-			-b:v 868k 		\
-			-tag:v DIVX 		\
-			-an 			\
+			-c:a libmp3lame 	\
+			-ar 48000 		\
+			-ab 128k 		\
+			-ac 2 			\
+			-c:v libxvid 		\
+			-crf 18 		\
+			-vtag DIVX 		\
+			-mbd rd 		\
+			-flags +mv4+aic 	\
+			-trellis 2 		\
+			-cmp 2 			\
+			-subcmp 2 		\
+			-g 30 			\
+			-vb 1500k		\
 			-pass 1 		\
 			-f rawvideo /dev/null
 		# Run second ffmpeg pass
 		ffmpeg -i "${input_file}" 	\
-			-c:v mpeg4 		\
-			-b:v 868k 		\
-			-tag:v DIVX 		\
 			-c:a libmp3lame 	\
-			-b:a 192k 		\
+			-ar 48000 		\
+			-ab 128k 		\
 			-ac 2 			\
-			-ar 44100 		\
+			-c:v libxvid 		\
+			-crf 18 		\
+			-vtag DIVX 		\
+			-mbd rd 		\
+			-flags +mv4+aic 	\
+			-trellis 2 		\
+			-cmp 2 			\
+			-subcmp 2 		\
+			-g 30 			\
+			-vb 1500k		\
 			-pass 2 "${output_file}"
 		echo "Created: ${output_file}"
 	else 
